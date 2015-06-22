@@ -13,10 +13,13 @@
     });
       $.ajax({
         type: "GET",
-        url: "http://wx.yaoshengyi.com/api/normal/v1/statis/"+beacon_url+"/"+game_url,
-        data: "json",
+        url: "/normal/v1/statis/"+beacon_url+"/"+game_url,
+        dataType:'jsonp',  
+        data:'',  
+        jsonp:'callback', 
         success: function(msg)
         {
+          alert(msg);
           var uv = 0;
           var categories_data=[];
           var data_data=[];
@@ -87,7 +90,8 @@
           ]
         });
 
-        }});
+        }
+      });
       }
 });
 

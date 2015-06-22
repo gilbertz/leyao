@@ -1,5 +1,10 @@
 // Generated on 2015-06-06 using generator-angular 0.11.1
 'use strict';
+var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
+var mountFolder = function (connect, dir) {
+    return connect.static(require('path').resolve(dir));
+};
+var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
 
 // # Globbing
 // for performance reasons we're only matching one level down:
@@ -11,6 +16,7 @@ module.exports = function (grunt) {
 
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
+  // grunt.loadNpmTasks('grunt-connect-proxy');
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
@@ -20,7 +26,7 @@ module.exports = function (grunt) {
     app: require('./bower.json').appPath || 'app',
     dist: 'dist'
   };
-
+ 
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -64,44 +70,102 @@ module.exports = function (grunt) {
     },
 
     // The actual grunt server settings
-    connect: {
-      options: {
-        port: 9000,
-        // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost',
-        livereload: 35729
-      },
-      livereload: {
-        options: {
-          open: true,
-          middleware: function (connect) {
-            return [
-              connect.static('.tmp'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect().use(
-                '/app/styles',
-                connect.static('./app/styles')
-              ),
-              connect.static(appConfig.app)
-            ];
-          }
-        }
-      },
+      connect: {
+            options: {
+                port: 9000,
+                // change this to '0.0.0.0' to access the server from outside
+                hostname: 'localhost',
+                livereload: 35729
+                            
+            },
+            server1: {
+               proxies: [
+                {
+                context: ['/auth', '/api'],// 这是你希望出现在grunt serve服务中的路径，比如这里配置的是http://127.0.0.1:9000/api/
+                host: 'localhost', // 这是你希望转发到的远端服务器
+                port: 3000, // 远端服务器端口
+                https: false,
+                changeOrigin: true, // 建议配置为true，这样它转发时就会把host带过去，比如www.ngnice.com，如果远端服务器使用了虚拟主机的方式配置，该选项通常是必须的。
+                rewrite: {
+                '^/api/': '/franky/api/v2/'  // 地址映射策略，从context开始算，把前后地址做正则替换，如果远端路径和context相同则不用配置。
+                }
+                }
+                ]
+            },
+            // server2: {
+            //      proxies: [
+            //     {
+            //     context: '/franky', // 这是你希望出现在grunt serve服务中的路径，比如这里配置的是http://127.0.0.1:9000/api/
+            //     host: 'localhost', // 这是你希望转发到的远端服务器
+            //     port: 3000, // 远端服务器端口
+            //     https: false,
+            //     changeOrigin: true, // 建议配置为true，这样它转发时就会把host带过去，比如www.ngnice.com，如果远端服务器使用了虚拟主机的方式配置，该选项通常是必须的。
+            //     }
+            //     ]
+            // },
+            livereload: {
+                options: {
+                    // middleware: function (connect) {
+                    //     return [
+                    //     proxySnippet,
+                    //     lrSnippet,
+                    //     connect.static('.tmp'),
+                    //     connect().use(
+                    //       '/bower_components',
+                    //       connect.static('./bower_components')
+                    //       ),
+                    //     connect().use(
+                    //       '/app/styles',
+                    //       connect.static('./app/styles')
+                    //       ),
+                    //     connect.static(appConfig.app)
+
+                    //     ];
+                    // }
+                     middleware: function (connect, options) {
+                        if (!Array.isArray(options.base)) {
+                            options.base = [options.base];
+                        }
+
+                        // 设置代理
+                        var middlewares = [
+                        require('grunt-connect-proxy/lib/utils').proxyRequest,
+                        connect.static('.tmp'),
+                        connect().use(
+                          '/bower_components',
+                          connect.static('./bower_components')
+                          ),
+                        connect().use(
+                          '/app/styles',
+                          connect.static('./app/styles')
+                          ),
+                        connect.static(appConfig.app)
+                        ];
+
+                        // 让目录可被浏览（即：允许枚举文件）
+                        var directory = options.directory || options.base[options.base.length - 1];
+                        middlewares.push(connect.directory(directory));
+
+                        return middlewares;
+                      }
+
+                }
+            },
       test: {
         options: {
           port: 9001,
           middleware: function (connect) {
             return [
-              connect.static('.tmp'),
-              connect.static('test'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
+            connect.static('.tmp'),
+            connect().use(
+              '/bower_components',
+              connect.static('./bower_components')
               ),
-              connect.static(appConfig.app)
+            connect().use(
+              '/app/styles',
+              connect.static('./app/styles')
+              ),
+            connect.static(appConfig.app)
             ];
           }
         }
@@ -433,6 +497,8 @@ module.exports = function (grunt) {
       'wiredep',
       'concurrent:server',
       'autoprefixer:server',
+      'configureProxies:server1',
+      // 'configureProxies:server2',
       'connect:livereload',
       'watch'
     ]);

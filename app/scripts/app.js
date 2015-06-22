@@ -1,25 +1,13 @@
-'use strict';
 
-/**
- * @ngdoc overview
- * @name nodejsAngularApp
- * @description
- * # nodejsAngularApp
- *
- * Main module of the application.
- */
 angular
   .module('nodejsAngularApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch'
+     'ngRoute', 
+     'angular-oauth2',
+     'angularMoment',
   ])
-  .config(function ($routeProvider) {
+  .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      .when('/', {
+      .when('/home', {
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl'
       })
@@ -35,7 +23,30 @@ angular
         templateUrl: 'views/statis.html',
         controller: 'StatisCtrl'
       })
-      .otherwise({
-        redirectTo: '/login'
-      });
-  });
+      .otherwise({redirectTo: '/'});
+  }]).config(['OAuthProvider', function (OAuthProvider) {
+    OAuthProvider.configure({
+      baseUrl: '/',
+      clientId: 'CLIENT_ID',
+      grantPath: '/auth/token',
+      revokePath: '/auth/revoke'
+    });
+  }])
+  .run(['$rootScope', '$window', 'OAuth', function ($rootScope, $window, OAuth) {
+
+    $rootScope.$on('oauth:error', function (event, rejection) {
+      // Ignore `invalid_grant` error - should be catched on `LoginController`.
+      if ('invalid_grant' === rejection.data.error) {
+        return;
+      }
+
+      // Refresh token when a `invalid_token` error occurs.
+      if ('unauthorized' === rejection.data.error) {
+        return OAuth.getRefreshToken();
+      }
+
+      if(rejection.status == 401){
+        return $window.location.href = '/#/login';
+      }
+    });
+  }]);

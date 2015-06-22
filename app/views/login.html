@@ -1,27 +1,42 @@
-    <div class="container">
-      <section class="loginBox row-fluid">
-          <div class="tabbable" id="tabs-634549">
-            <ul class="nav nav-tabs">
-              <li>
-                <a href="#panel-60560" data-toggle="tab">帐号登录</a>
-              </li>
-              <li class="active">
-                <a href="#panel-549981" data-toggle="tab">二维码登录</a>
-              </li>
-            </ul>
-            <div class="tab-content">
-              <div class="tab-pane" id="panel-60560">
-              
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="login-panel panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">登陆</h3>
+        </div>
+        <div class="panel-body">
+          <form role="form">
+            <fieldset>
+
+              <div class="form-group">
+                <input class="form-control" placeholder="用户名" ng-model="username" type="text" autofocus>
               </div>
-              <div class="tab-pane active" id="panel-549981">
-                <DIV><input type="text" name="username" placeholder="用户名"/></DIV>
-                <DIV>
-                  <input type="text" name="password" placeholder="密码"/>
-                </DIV>
-                 <DIV class="span6"><label><input type="checkbox" name="rememberme" />下次自动登录</label></DIV>
-                  <DIV class="span1"><input type="button" value=" 登录 " class="btn btn-primary" ng-click="send()"></DIV>
+
+              <div class="form-group">
+                <input class="form-control" placeholder="密码" ng-model="password" type="password" value="">
               </div>
-            </div>
-          </div>
-        </section><!-- /loginBox -->
-    </div> <!-- /container -->
+
+              <div class="checkbox">
+                <label>
+                  <input name="remember" type="checkbox" value="Remember Me">记住我
+                </label>
+              </div>
+
+              <div ng-show="error == 'login'" class="alert alert-danger hide" role="alert">
+                  登陆失败，用户名或密码错误！
+              </div>
+
+              <div ng-show="error == 'unknown'" class="alert alert-danger hide" role="alert">
+                  登陆失败，服务器错误，请联系产品部！
+              </div>
+
+              <div class="btn btn-lg btn-success btn-block" ng-click="login()">登陆</idv>
+
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
