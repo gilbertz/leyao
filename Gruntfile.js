@@ -81,14 +81,14 @@ module.exports = function (grunt) {
             server1: {
                proxies: [
                 {
-                context: ['/auth', '/api'],// 这是你希望出现在grunt serve服务中的路径，比如这里配置的是http://127.0.0.1:9000/api/
+                context: ['/oauth', '/api','/normal'],// 这是你希望出现在grunt serve服务中的路径，比如这里配置的是http://127.0.0.1:9000/api/
                 host: 'localhost', // 这是你希望转发到的远端服务器
                 port: 3000, // 远端服务器端口
                 https: false,
                 changeOrigin: true, // 建议配置为true，这样它转发时就会把host带过去，比如www.ngnice.com，如果远端服务器使用了虚拟主机的方式配置，该选项通常是必须的。
-                rewrite: {
-                '^/api/': '/franky/api/v2/'  // 地址映射策略，从context开始算，把前后地址做正则替换，如果远端路径和context相同则不用配置。
-                }
+                // rewrite: {
+                // '^/api/': '/franky/api/v2/'  // 地址映射策略，从context开始算，把前后地址做正则替换，如果远端路径和context相同则不用配置。
+                // }
                 }
                 ]
             },

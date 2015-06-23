@@ -7,6 +7,10 @@ angular
   ])
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
+      .when('/', {
+        templateUrl: 'views/home.html',
+        controller: 'HomeCtrl'
+      })
       .when('/home', {
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl'
@@ -28,8 +32,8 @@ angular
     OAuthProvider.configure({
       baseUrl: '/',
       clientId: 'CLIENT_ID',
-      grantPath: '/auth/token',
-      revokePath: '/auth/revoke'
+      grantPath: '/oauth/token',
+      revokePath: '/oauth/revoke'
     });
   }])
   .run(['$rootScope', '$window', 'OAuth', function ($rootScope, $window, OAuth) {

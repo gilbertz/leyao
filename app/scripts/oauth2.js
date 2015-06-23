@@ -96,14 +96,14 @@
                     },
                     getAccessToken: {
                         value: function getAccessToken(user, options) {
-                            if (!user || !user.username || !user.password) {
-                                throw new Error("`user` must be an object with `username` and `password` properties.");
+                            if (!user || !user.email || !user.password) {
+                                throw new Error("`user` must be an object with `email and `password` properties.");
                             }
                             var data = queryString.stringify({
                                 grant_type: "password",
-                                name: user.username,
+                                email: user.email,
                                 password: user.password,
-                                scope: "manager"
+                                // scope: "manager"
                             });
                             options = angular.extend({
                                 headers: {

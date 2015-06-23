@@ -8,12 +8,12 @@ angular.module('nodejsAngularApp')
     $scope.login = function () {
 
         var user = {
-          username: $scope.username,
+          email: $scope.email,
           password: $scope.password
         }
 
         OAuth.getAccessToken(user, {}).then(function (response) {
-          $location.path("main")
+          $location.path("statis")
           loginModal.modal('hide');
 
         }).catch(function (response) {
