@@ -34,6 +34,9 @@ module.exports = function(config) {
       'bower_components/query-string/query-string.js',
       'bower_components/moment/moment.js',
       'bower_components/angular-moment/angular-moment.js',
+      'bower_components/echarts/build/dist/echarts.js',
+      'bower_components/fex-webuploader/dist/webuploader.js',
+      'bower_components/angular-oauth2/dist/angular-oauth2.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

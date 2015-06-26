@@ -96,13 +96,19 @@
                     },
                     getAccessToken: {
                         value: function getAccessToken(user, options) {
-                            if (!user || !user.email || !user.password) {
-                                throw new Error("`user` must be an object with `email and `password` properties.");
+                            // if (!user || !user.email || !user.password) {
+                            //     throw new Error("`user` must be an object with `email and `password` properties.");
+                            // }
+                            if (!user || !user.openid) {
+                                throw new Error("`user` must be an object with `openid` properties.");
                             }
+                            // alert(user);
+                            // alert(user.openid);
                             var data = queryString.stringify({
                                 grant_type: "password",
-                                email: user.email,
-                                password: user.password,
+                                openid: user.openid,
+                                // email: user.email,
+                                // password: user.password,
                                 // scope: "manager"
                             });
                             options = angular.extend({
@@ -110,8 +116,9 @@
                                     "Content-Type": "application/x-www-form-urlencoded"
                                 }
                             }, options);
-
+                         
                             return $http.post("" + config.baseUrl + "" + config.grantPath, data, options).then(function(response) {
+
                                 OAuthToken.setToken(response.data);
                                 return response;
                             });

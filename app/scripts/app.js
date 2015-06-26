@@ -19,6 +19,14 @@ angular
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
       })
+      .when('/weixin_login', {
+        templateUrl: 'views/weixin_login.html',
+        controller: 'WeixinLoginCtrl'
+      })
+      .when('/qrcode', {
+        templateUrl: 'views/qrcode.html',
+        controller: 'QrcodeCtrl'
+      })
       .when('/party_center', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
