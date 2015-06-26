@@ -57,8 +57,8 @@ angular
         return OAuth.getRefreshToken();
       }
 
-      if(rejection.status == 401){
-        return $window.location.href = '/#/login';
+      if(rejection.status == 401 || rejection.status == 500){
+        return $window.location.href = "http://wx.yaoshengyi.com/wx456ffb04ee140d84/launch?rurl=http://web.y1y.me/#/weixin_login";
       }
     });
   }]);
