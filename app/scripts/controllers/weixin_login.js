@@ -1,21 +1,21 @@
 angular.module('nodejsAngularApp')
-  .controller('WexinLoginCtrl', function ($scope, $http, $timeout, $location, OAuth, $routeParams) {
+  .controller('WeixinLoginCtrl', function ($scope, $http, $timeout, $location, OAuth, $routeParams) {
 
-    if($routeParams.webtoken){
-      window.location.href = "http://wx.yaoshengyi.com/wx456ffb04ee140d84/launch?rurl=http://web.y1y.me/#/weixin_login";
+    if(!$routeParams.webtoken){
+      window.location.href = "http://wx.yaoshengyi.com/wx456ffb04ee140d84/launch?rurl="+encodeURL("http://web.y1y.me/#/weixin_login");
     }else($routeParams.webtoken){
       login($routeParams.webtoken);
-    }
+      alert("haha");
+    };
 
     var login = function (openid) {
         
-
         var user = {
           // email: $scope.email,
           // password: $scope.password
           openid: openid
         }
-
+        alert(user.openid);
         OAuth.getAccessToken(user, {}).then(function (response) {
            $location.path("/statis")
           
