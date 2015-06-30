@@ -1,3 +1,5 @@
+"use strict";
+
 angular.module('nodejsAngularApp').controller('StatisCtrl',[
  '$scope', '$http', '$location',
   function ($scope, $http, $location, OAuth) {

@@ -1,3 +1,4 @@
+"use strict";
 
 angular.module('nodejsAngularApp')
   .controller('HomeCtrl', function ($scope,$location, $http) {

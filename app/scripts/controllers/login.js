@@ -1,3 +1,4 @@
+"use strict";
 
 angular.module('nodejsAngularApp')
   .controller('LoginCtrl', function ($scope, $http, $location, OAuth) {

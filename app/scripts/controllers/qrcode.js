@@ -1,3 +1,5 @@
+"use strict";
+
 angular.module('nodejsAngularApp')
   .controller('QrcodeCtrl', function ($scope, $http, $timeout, $location, OAuth) {
     var ticket;

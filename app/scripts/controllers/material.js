@@ -1,3 +1,5 @@
+"use strict";
+
 angular.module('nodejsAngularApp')
   .controller('MaterialCreateCtrl', function ($scope, $http, $location) {
 

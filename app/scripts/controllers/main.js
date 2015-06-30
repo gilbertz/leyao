@@ -1,3 +1,4 @@
+"use strict";
 
 angular.module('nodejsAngularApp')
   .controller('MainCtrl', function ($scope, $http) {

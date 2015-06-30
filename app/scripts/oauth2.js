@@ -1,3 +1,4 @@
+"use strict";
 /**
  * angular-oauth2 - Angular OAuth2
  * @version v1.0.2
