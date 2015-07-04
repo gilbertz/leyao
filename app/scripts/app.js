@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 angular
   .module('nodejsAngularApp', [
@@ -51,12 +51,12 @@ angular
 
     $rootScope.$on('oauth:error', function (event, rejection) {
       // Ignore `invalid_grant` error - should be catched on `LoginController`.
-      if ('invalid_grant' === rejection.data.error) {
+      if ('invalid_grant' == rejection.data.error) {
         return;
       }
 
       // Refresh token when a `invalid_token` error occurs.
-      if ('unauthorized' === rejection.data.error) {
+      if ('unauthorized' == rejection.data.error) {
         return OAuth.getRefreshToken();
       }
 
