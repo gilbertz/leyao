@@ -3,8 +3,8 @@
 angular
   .module('nodejsAngularApp', [
      'ngRoute', 
-     'angular-oauth2',
      'angularMoment',
+     'angular-oauth2'
   ])
   .config(['$routeProvider','$locationProvider', function ($routeProvider,$locationProvider) {
     $locationProvider.html5Mode(true);
@@ -51,17 +51,18 @@ angular
 
     $rootScope.$on('oauth:error', function (event, rejection) {
       // Ignore `invalid_grant` error - should be catched on `LoginController`.
-      if ('invalid_grant' == rejection.data.error) {
+      if ('invalid_grant' === rejection.data.error) {
         return;
       }
 
       // Refresh token when a `invalid_token` error occurs.
-      if ('unauthorized' == rejection.data.error) {
+      if ('unauthorized' === rejection.data.error) {
         return OAuth.getRefreshToken();
       }
 
-      if(rejection.status == 401 || rejection.status == 500){
-        return $window.location.href = "http://wx.yaoshengyi.com/wx456ffb04ee140d84/launch?rurl=http://web.y1y.me/#/weixin_login";
+      if(rejection.status === 401 || rejection.status === 500){
+        window.location.href = 'http://wx.yaoshengyi.com/wx456ffb04ee140d84/launch?rurl=http://web.y1y.me/#/weixin_login';
+        return ;
       }
     });
   }]);
