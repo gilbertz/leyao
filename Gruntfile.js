@@ -96,8 +96,8 @@ module.exports = function (grunt) {
                  proxies: [
                 {
                 context: ['/qrcode', '/web_login','/oauth', '/api','/normal'],// 这是你希望出现在grunt serve服务中的路径，比如这里配置的是http://127.0.0.1:9000/api/
-                host: '121.42.47.121', // 这是你希望转发到的远端服务器
-                port: 8000, // 远端服务器端口
+                host: '121.43.105.166', // 这是你希望转发到的远端服务器
+                port: 80, // 远端服务器端口
                 https: false,
                 changeOrigin: true, // 建议配置为true，这样它转发时就会把host带过去，比如www.ngnice.com，如果远端服务器使用了虚拟主机的方式配置，该选项通常是必须的。
                 }
