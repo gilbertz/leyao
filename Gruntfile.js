@@ -1,10 +1,5 @@
 // Generated on 2015-06-06 using generator-angular 0.11.1
 'use strict';
-var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
-var mountFolder = function (connect, dir) {
-    return connect.static(require('path').resolve(dir));
-};
-var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
 
 // # Globbing
 // for performance reasons we're only matching one level down:
@@ -105,23 +100,6 @@ module.exports = function (grunt) {
             },
             livereload: {
                 options: {
-                    // middleware: function (connect) {
-                    //     return [
-                    //     proxySnippet,
-                    //     lrSnippet,
-                    //     connect.static('.tmp'),
-                    //     connect().use(
-                    //       '/bower_components',
-                    //       connect.static('./bower_components')
-                    //       ),
-                    //     connect().use(
-                    //       '/app/styles',
-                    //       connect.static('./app/styles')
-                    //       ),
-                    //     connect.static(appConfig.app)
-
-                    //     ];
-                    // }
                      middleware: function (connect, options) {
                         if (!Array.isArray(options.base)) {
                             options.base = [options.base];
