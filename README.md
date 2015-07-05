@@ -6,36 +6,36 @@
 ### liunx 安装说明
 * 先安装nodejs
 
-      选择合适目录，比如/usr/local/
+    选择合适目录，比如/usr/local/
 
-  wget https://nodejs.org/dist/v0.12.6/node-v0.12.6-linux-x64.tar.gz
+    wget https://nodejs.org/dist/v0.12.6/node-v0.12.6-linux-x64.tar.gz
 
-  tar zxvf node-v0.12.6-linux-x64.tar.gz
+    tar zxvf node-v0.12.6-linux-x64.tar.gz
 
-  然后软连ln -s /usr/local/node-v0.12.6-linux-x64/bin/node /usr/local/bin/node 
+    然后软连ln -s /usr/local/node-v0.12.6-linux-x64/bin/node /usr/local/bin/node 
 
 * 再安装npm
 
-  参考 https://www.npmjs.com/package/npm
+    参考 https://www.npmjs.com/package/npm
 
 ```
 curl -L https://npmjs.org/install.sh | sh
 ```
 * 安装grunt yoeman bower
 
-  记得先npm config set registry http://registry.npmjs.org/，再npm install
+    记得先npm config set registry http://registry.npmjs.org/，再npm install
 
-  sudo npm install -g grunt yo grunt-cli bower
+    sudo npm install -g grunt yo grunt-cli bower
 
-  安装过程如出错
+    安装过程如出错
 
-    Please report this full log at https://github.com/Medium/phantomjs
+       Please report this full log at https://github.com/Medium/phantomjs
 
-    npm ERR! Linux 3.13.0-32-generic
+       npm ERR! Linux 3.13.0-32-generic
 
-    npm ERR! argv "node" "/usr/bin/npm" "install"
+       npm ERR! argv "node" "/usr/bin/npm" "install"
 
-  或者如果出现registry error, 则可以运行npm config set registry http://registry.cnpmjs.org,记得命令行改源链接，原因是被墙
+    或者如果出现registry error, 则可以运行npm config set registry http://registry.cnpmjs.org,记得命令行改源链接，原因是被墙
 
 * npm install 安装所需npm_modules
 
