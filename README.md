@@ -6,7 +6,7 @@
 ### liunx 安装说明
 * 先安装nodejs
 
-  选择合适目录，比如/usr/local/
+      选择合适目录，比如/usr/local/
 
   wget https://nodejs.org/dist/v0.12.6/node-v0.12.6-linux-x64.tar.gz
 
