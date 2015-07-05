@@ -19,7 +19,7 @@
     参考 https://www.npmjs.com/package/npm
 
 ```
-curl -L https://npmjs.org/install.sh | sh
+    curl -L https://npmjs.org/install.sh | sh
 ```
 * 安装grunt yoeman bower
 
