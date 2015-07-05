@@ -28,13 +28,13 @@
     sudo npm install -g grunt yo grunt-cli bower
 
     安装过程如出错
-
+```
       Please report this full log at https://github.com/Medium/phantomjs
 
       npm ERR! Linux 3.13.0-32-generic
 
       npm ERR! argv "node" "/usr/bin/npm" "install"
-
+```
     或者如果出现registry error, 则可以运行npm config set registry http://registry.cnpmjs.org,记得命令行改源链接，原因是被墙
 
 * npm install 安装所需npm_modules
