@@ -23,7 +23,7 @@
 ```
 * 安装grunt yoeman bower
 
-    记得先npm config set registry http://registry.npmjs.org/，再npm install
+    记得先npm config set registry http://registry.npmjs.org/   再npm install
 
     sudo npm install -g grunt yo grunt-cli bower
 
@@ -35,7 +35,7 @@
 
       npm ERR! argv "node" "/usr/bin/npm" "install"
 ```
-    或者如果出现registry error, 则可以运行npm config set registry http://registry.cnpmjs.org,记得命令行改源链接，原因是被墙
+    或者如果出现registry error, 则可以运行npm config set registry http://registry.cnpmjs.org  记得命令行改源链接，原因是被墙
 
 * npm install 安装所需npm_modules
 
