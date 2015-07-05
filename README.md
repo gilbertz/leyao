@@ -4,7 +4,7 @@
 项目采用的angular框架来构建，已经集成了前端oauth2.0验证请求后端API的功能了，这个功能使用的是Angular-oauth2的包，还采用了grunt-connect-proxy作为前端代理，将涉及到API的请求转发到服务器端url
 ## 使用说明
 ### liunx 安装说明
-1. 先安装nodejs
+* 先安装nodejs
 
   * 选择合适目录，比如/usr/local/
 
@@ -14,7 +14,7 @@
 
   * 然后软连ln -s /usr/local/node-v0.12.6-linux-x64/bin/node /usr/local/bin/node 
 
-2. 再安装npm
+* 再安装npm
 
   * 参考 https://www.npmjs.com/package/npm
 
@@ -23,7 +23,7 @@ curl -L https://npmjs.org/install.sh | sh
 ```
 
 
-3. 安装grunt yoeman bower
+* 安装grunt yoeman bower
 
   * 记得先npm config set registry http://registry.npmjs.org/，再npm install
 
@@ -39,11 +39,11 @@ curl -L https://npmjs.org/install.sh | sh
 
     或者如果出现registry error, 则可以运行npm config set registry http://registry.cnpmjs.org,记得命令行改源链接，原因是被墙
 
-4. npm install 安装所需npm_modules
+* npm install 安装所需npm_modules
 
-5. bower install 安装前端包
+* bower install 安装前端包
 
-6. grunt serve ，启动nodejs服务器，在浏览器打开localhost:9001
+* grunt serve ，启动nodejs服务器，在浏览器打开localhost:9001
 
 ### mac安装说明
 1. brew install nodejs
