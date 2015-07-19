@@ -1,87 +1,75 @@
-
-<body>
-
 <div class="container main">
-  <div class="login">
-    <div class="login-left">
-    </div>
-    <div class="login-right">
-      <div class="menu">
-        <div class="menu-btn ">
-          扫微信二维码登陆
+    <div class="login">
+        <div class="login-left">
         </div>
-      </div>
-      <div class="box1">
-        <div class="codebox">
-          <div id = "qrcode" >
-          <img ng-src="{{qrcode.qrcode_url}}">
-          <div class="spinner">
-                           <div class="bounce1"></div>
-                           <div class="bounce2"></div>
-                           <div class="bounce3"></div>
+        <div class="login-right">
+            <div class="menu">
+                <div class="menu-btn ">
+                    扫微信二维码登陆
+                </div>
+            </div>
+            <div class="box1">
+                <div class="codebox">
+                    <div id="qrcode">
+                        <img ng-src="{{qrcode.qrcode_url}}">
+
+                        <div class="spinner">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
                         </div>
-          </div>
+                    </div>
+                </div>
+                <div class="tip">
+                </div>
+                <div class="intro">
+                    <p>step1. 微信扫描二维码(已关注用户将自动登录）</p>
+
+                    <p>step2. 关注“疯狂摇一摇”后，将会自动登录</p>
+                </div>
+            </div>
+
         </div>
-        <div class="tip">
-        </div>
-        <div class="intro">
-          <p>step1. 微信扫描二维码(已关注用户将自动登录）</p>
-          <p>step2. 关注“疯狂摇一摇”后，将会自动登录</p>
-        </div>
-      </div>
-      
     </div>
-  </div>
 </div>
 
-<script>
-    
-   
-// var ticket;
-//    $(document).ready(function(){
-//       var qr_code = document.getElementById("qrcode");
-//       $.ajax({
-//         url: "/web_login/qr_login.json",
-//         type: 'get',
-//         async:false,
-//         dataType: "json",
-//          success: function(data){
-//             ticket = data.ticket;
-//             var image =  new Image();
-//             image.src = data.qrcode_url;
-//             $('.spinner').css('display','none');
-//             qr_code.appendChild(image);
-//           }
-//       });
-//     }); 
+<!---->
+<!--<script>-->
+<!--var ticket;-->
+<!--$(document).ready(function(){-->
+<!--var qr_code = document.getElementById("qrcode");-->
+<!--$.ajax({-->
+<!--url: "/web_login/qr_login.json",-->
+<!--type: 'get',-->
+<!--async:false,-->
+<!--dataType: "json",-->
+<!--success: function(data){-->
+<!--ticket = data.ticket;-->
+<!--var image =  new Image();-->
+<!--image.src = data.qrcode_url;-->
+<!--$('.spinner').css('display','none');-->
+<!--qr_code.appendChild(image);-->
+<!--}-->
+<!--});-->
+<!--}); -->
 
-//   var InterValObj;
-//   function query_code() {
-//     $.ajaxSetup({cache: false });
-//     window.clearInterval(InterValObj);
-//     var getURL = "/qrcode/query_scaner?ticket="+ticket;
-//     var newURL = "http://www.baidu.com";
-//     $.get(getURL, "", function(data, status) {
-//       console.log(data.result);
-//       if ( status == "success" ) {
-//         if ( data.result == "0" ) {
-//           location.href = newURL;
-//         } else {
-//           InterValObj = window.setInterval(query_code, 500);
-//         }
-//       } else {
-//         InterValObj = window.setInterval(query_code, 500);
-//       }
-//     });
-//   }
-  
-
-  
-
-
-
-  
-</script>
-
-</body>
-</html>
+<!--var InterValObj;-->
+<!--function query_code() {-->
+<!--$.ajaxSetup({cache: false });-->
+<!--window.clearInterval(InterValObj);-->
+<!--var getURL = "/qrcode/query_scaner?ticket="+ticket;-->
+<!--var newURL = "http://www.baidu.com";-->
+<!--$.get(getURL, "", function(data, status) {-->
+<!--console.log(data.result);-->
+<!--if ( status == "success" ) {-->
+<!--if ( data.result == "0" ) {-->
+<!--location.href = newURL;-->
+<!--} else {-->
+<!--InterValObj = window.setInterval(query_code, 500);-->
+<!--}-->
+<!--} else {-->
+<!--InterValObj = window.setInterval(query_code, 500);-->
+<!--}-->
+<!--});-->
+<!--} -->
+<!--</script>-->

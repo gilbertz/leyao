@@ -1,0 +1,72 @@
+@charset "utf-8";
+/*--format--*/
+*{
+    margin:0;
+    padding: 0;
+}
+li{
+    list-style-type: none;
+}
+img{
+    border: none;
+}
+a{
+    text-decoration: none;
+}
+/*--adv--*/
+.adv{
+    width: 100%;
+    height: 100%;
+    padding-bottom: 40px;
+    background: #E74145 url(http://wx.51self.com/uploads/sucai/1437101080918.webp) no-repeat center top;
+}
+.adv-box{
+    position: relative;
+    margin:0 5%;
+    width: 90%;
+    z-index: 1;
+}
+.adv-rect{
+    width: 100%;
+}
+.adv-block{
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 6%;
+    width:88%;
+    height: 88%;
+    z-index: 2;
+}
+.adv-block li{
+    display: block;
+    float: left;
+    margin: 1%;
+    width: 30%;
+    height: 30%;
+    overflow: hidden;
+    background:url(http://wx.51self.com/uploads/sucai/1437067858495.png) no-repeat center;
+    background-size: 100% 100%
+    border-radius: 10%;
+}
+.adv-block li:nth-child(3n+1){
+    margin-left: 3%;
+}
+.adv-block li:nth-child(1),.adv-block li:nth-child(2),.adv-block li:nth-child(3){
+    margin-top: 3%;
+}
+.adv-block li.adv-shade{
+    background:url(../../images/shade.png) no-repeat center;
+    background-size: 100% 100%;
+}
+.adv-block li.on{
+    opacity: 0.3;
+}
+.adv-block li img{
+    width: 100%;
+    height: 100%;
+}
+.adv-banner{
+    margin: 7% 5%;
+    width: 90%;
+}

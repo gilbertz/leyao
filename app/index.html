@@ -1,50 +1,57 @@
 <!doctype html>
 <html ng-app="nodejsAngularApp"  class="no-js" lang="zh-CN">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>乐摇</title>
     <base href="/">
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="styles/base.css">
-    <link rel="stylesheet" href="styles/home.css">
-    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css">
-    <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css">
+</head>
+<body >
+
+   <div>
+      <div data-ui-view=""></div>
+  </div>
+
+  <!--<link rel="stylesheet" href="styles/main.css">-->
+  <!--<link rel="stylesheet" href="styles/home.css">-->
+  <!--bootstrap.js依赖jquery.js-->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <!--<script src="bower_components/angular-route/angular-route.js"></script>-->
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <!--<script src="bower_components/moment/moment.js"></script>-->
+  <!--<script src="bower_components/angular-moment/angular-moment.js"></script>-->
+  <!--<script src="bower_components/moment/locale/zh-cn.js"></script>-->
+  <!--oauth2.js依赖 query-string.js-->
+  <script src="bower_components/query-string/query-string.js"></script>
+  <script src="bower_components/oclazyload/dist/ocLazyLoad.js"></script>
 
 
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/moment/moment.js"></script>
-    <script src="bower_components/angular-moment/angular-moment.js"></script>
-    <script src="bower_components/moment/locale/zh-cn.js"></script>
-    <script src="bower_components/query-string/query-string.js"></script>
+  <script>
+      // 设置api域名
+      window.domain = "http://leyao.me/";
+      var s = window.location.host;
+      // 测试用 全加上
+      if(s.indexOf('localhost:') != -1){
+          document.write("<script src=\"scripts/mobile.js\"><\/script>");
+      }
+      //手机端
+      else if(s.indexOf('mobile.') != -1){
+          document.write("<script src=\"scripts/mobile.js\"><\/script>");
+      }
+      // 后台web端
+      else{
+          document.write("<script src=\"scripts/app.js\"><\/script>");
+      }
+  </script>
 
-    <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/login.js"></script>
-    <script src="scripts/controllers/home.js"></script>
-    <script src="scripts/controllers/statis.js"></script>
-    <script src="scripts/controllers/qrcode.js"></script>
-    <script src="scripts/oauth2.js"></script>
-    <script src="bower_components/echarts/build/source/echarts-all.js"></script>
-
-    <script src="http://wx.51self.com/uploads/sucai/1431335297874.js"></script>
-    <script src="http://wx.51self.com/uploads/sucai/1431335297578.js"></script>
-    <script>
-    var siteURL = "http://www.yimi.so/";
-    var currentURL = "http%3A%2F%2Fwww.yimi.so%2Flogin";
-    </script>
- 
-
-
-  </head>
-  <body >
-
-    <div ng-view></div>
+  <script src="scripts/oauth2.js"></script>
 
 </body>
 </html>

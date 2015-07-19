@@ -1,36 +1,25 @@
-"use strict";
+'use strict';
 
 angular.module('nodejsAngularApp')
-  .controller('LoginCtrl', function ($scope, $http, $location, OAuth) {
-    $scope.send = function() {
-      return $location.url('/statis');
-    };
-
+  .controller('LoginCtrl', ['$scope','$http','$location','OAuth','$stateParams','$state',function ($scope, $http, $location, OAuth,$stateParams,$state) {
+        document.title = '登录';
     $scope.login = function () {
-
         var user = {
-          email: $scope.email,
-          password: $scope.password
-        }
-
+//          email: $scope.email,
+//          password: $scope.password
+            // 本地测试模拟登录用
+            openid:'oRKD0s8stWW-DUiWIKDKV22qaUVI'
+        };
         OAuth.getAccessToken(user, {}).then(function (response) {
-          $location.path("statis")
-          loginModal.modal('hide');
+            var from = $stateParams.from;
+            $state.go(from && from !== 'login' ? from : 'main');
 
         }).catch(function (response) {
-          if (response.status == 401 || response.status == 400) {
-            $scope.error = "login"
+          if (response.status === 401 || response.status === 400) {
+            $scope.error = 'login';
           } else {
-            $scope.error = "unknown"
+            $scope.error = 'unknown';
           }
-        })
+        });
       };
-
-    var loginModal = $('.loginModal').modal('setting', {
-      closable: false,
-     onApprove: $scope.login
-    });
-
-    loginModal.modal('show');
-
-  });
+  }]);

@@ -1,4 +1,5 @@
 
+
     <header class="site-header">
       <div class="container">
         <nav class="navbar">
@@ -12,8 +13,8 @@
             </ul>
             <ul class="navbar-button list-inline pull-right">
               <!-- <li><a href="" class="user"></a></li> -->
-              <li class="navbar-sign"><a href="">注册</a></li>
-              <li class="navbar-login"><a href="">登录</a></li>
+              <li class="navbar-sign" ng-click="send()">注册</a></li>
+              <li class="navbar-login" ng-click="send()">登录</a></li>
             </ul>
           </div>
         </nav>
@@ -30,7 +31,7 @@
             <h1 class="title">乐摇，让生活动起来</h1>
             <p class="">摇动次数：<span>986712378687</span> 次</p>
           </div>
-          <a href="" class="btn btn-primary btn-lg">立即接入</a>
+          <a ng-click="send()" class="btn btn-primary btn-lg">立即接入</a>
         </div>
       </div>
       <div class="page-2">
