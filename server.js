@@ -20,14 +20,17 @@ app.use(require('compression')());
 //   proxy.web(req, res, {target: 'http://127.0.0.1:3000/franky/api/v2/'});
 // });
 
-
-['bower_components','images','scripts','styles','views'].forEach(function (dir) {
+['bower_components'].forEach(function (dir) {
   app.use('/' + dir, express.static('./' + dir));
+});
+
+['images','scripts','styles','views'].forEach(function (dir) {
+  app.use('/' + dir, express.static('./app/' + dir));
 });
 
 app.use('/', function (req, res, next) {
   if (req.method !== 'GET' && req.method !== 'HEAD') return next();
-  res.sendFile('./index.html', {root: __dirname});
+  res.sendFile('./app/index.html', {root: __dirname});
 });
 
 exports.app = app;
