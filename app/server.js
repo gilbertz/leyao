@@ -32,7 +32,7 @@ app.use('/', function (req, res, next) {
 
 exports.app = app;
 exports.listen = function (port, address) {
-  port = port || process.env.PORT || process.env.VMC_APP_PORT || 3001;
+  port = port || process.env.PORT || process.env.VMC_APP_PORT || 9001;
   address = address || '127.0.0.1'
   var server = require('http').createServer(app);
   server.listen(port, address, function () {
