@@ -15,8 +15,9 @@ angular
 //    }])
   .config(['$stateProvider','$urlRouterProvider','$locationProvider', function ($stateProvider, $urlRouterProvider,$locationProvider) {
     // $locationProvider.html5Mode(true);
-        $urlRouterProvider
+    $urlRouterProvider
             .when('/party_center', '/party_center/page1')
+            .when('/miya', '/miya/show')
             .otherwise('/home');
      $stateProvider
          .state('home', {
@@ -60,6 +61,27 @@ angular
                      return $ocLazyLoad.load(['scripts/controllers/qrcode.js']);
                  }]
              }
+         })
+         // miya 资讯发布系统路由
+        .state('miya', {
+             url:'/miya',
+             templateUrl: 'views/miya.html',
+             controller: 'MiyaCtrl',
+             resolve:{
+                 loadLoginCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                     // you can lazy load files for an existing module
+                     // return $ocLazyLoad.load([{files:['styles/home_site.css'],cache:true},{files:['bower_components/flexslider/jquery.flexslider-min.js"'],cache:true},{files:['bower_components/flexslider/flexslider.css"'],cache:true}]);
+                    return $ocLazyLoad.load([{files:['scripts/controllers/miya.js'],cache:true},{files:['styles/miya.css'],cache:true}]);
+
+                    
+
+                 }]
+             }
+         })
+
+        .state('miya.show', {
+             url:'/show',
+             templateUrl: 'views/miya/show.html',
          })
          .state('main', {
              url:'/party_center',
@@ -107,46 +129,46 @@ angular
     });
   }])
   .run(['$rootScope', '$window', 'OAuth', 'OAuthToken','$state', function ($rootScope,$window, OAuth,OAuthToken,$state) {
-           // 不需要登录的路由配置到这里面
-        $rootScope.noNeedLogins = new Array('login','home','qrcode');
+//            // 不需要登录的路由配置到这里面
+//         $rootScope.noNeedLogins = new Array('login','home','qrcode');
 
-    $rootScope.$on('oauth:error', function (event, rejection) {
-      // Ignore `invalid_grant` error - should be catched on `LoginController`.
-      if ('invalid_grant' === rejection.data.error) {
-        return;
-      }
-      // Refresh token when a `invalid_token` error occurs.
-      if ('unauthorized' === rejection.data.error) {
-        return OAuth.getRefreshToken();
-      }
-        // token过期
-      if(rejection.status === 500 || rejection.status === 401){
-          // 为了方便本地开发 可用第二个,正式坏境用第一个
-          $state.go('qrcode',{from:$state.current.name,w:'401'});
-//          $state.go("login",{from:$state.current.name,w:'401'});
+//     $rootScope.$on('oauth:error', function (event, rejection) {
+//       // Ignore `invalid_grant` error - should be catched on `LoginController`.
+//       if ('invalid_grant' === rejection.data.error) {
+//         return;
+//       }
+//       // Refresh token when a `invalid_token` error occurs.
+//       if ('unauthorized' === rejection.data.error) {
+//         return OAuth.getRefreshToken();
+//       }
+//         // token过期
+//       if(rejection.status === 500 || rejection.status === 401){
+//           // 为了方便本地开发 可用第二个,正式坏境用第一个
+//           $state.go('qrcode',{from:$state.current.name,w:'401'});
+// //          $state.go("login",{from:$state.current.name,w:'401'});
 
-      }
-    });
-     $rootScope.$on('$stateChangeStart',
-            function(event, toState, toParams, fromState, fromParams){
-                // 为了方便本地开发 可用第二个,正式坏境用第一个
+//       }
+//     });
+//      $rootScope.$on('$stateChangeStart',
+//             function(event, toState, toParams, fromState, fromParams){
+//                 // 为了方便本地开发 可用第二个,正式坏境用第一个
 
-                // 正式坏境用
-                if($rootScope.noNeedLogins.indexOf(toState.name) !== -1){return;}// 如果是进入登录界面则允许
-                // 如果用户不存在
-                if(!OAuthToken.getAccessToken()){
-                    event.preventDefault();// 取消默认跳转行为
-                    $state.go('qrcode',{from:toState.name,w:'notLogin'});//跳转到登录界面
-                }
+//                 // 正式坏境用
+//                 if($rootScope.noNeedLogins.indexOf(toState.name) !== -1){return;}// 如果是进入登录界面则允许
+//                 // 如果用户不存在
+//                 if(!OAuthToken.getAccessToken()){
+//                     event.preventDefault();// 取消默认跳转行为
+//                     $state.go('qrcode',{from:toState.name,w:'notLogin'});//跳转到登录界面
+//                 }
 
-                // 测试可用
-//                if($rootScope.noNeedLogins.indexOf(toState.name) != -1)return;// 如果是进入登录界面则允许
-//                // 如果用户不存在
-//                if(!OAuthToken.getAccessToken()){
-//                    event.preventDefault();// 取消默认跳转行为
-//                    $state.go("login",{from:toState.name,w:'notLogin'});//跳转到登录界面
-//                }
+//                 // 测试可用
+// //                if($rootScope.noNeedLogins.indexOf(toState.name) != -1)return;// 如果是进入登录界面则允许
+// //                // 如果用户不存在
+// //                if(!OAuthToken.getAccessToken()){
+// //                    event.preventDefault();// 取消默认跳转行为
+// //                    $state.go("login",{from:toState.name,w:'notLogin'});//跳转到登录界面
+// //                }
 
 
-            });
+//             });
   }]);
